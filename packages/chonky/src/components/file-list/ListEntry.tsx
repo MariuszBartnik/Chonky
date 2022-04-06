@@ -19,6 +19,7 @@ interface StyleState {
     entryState: FileEntryState;
     dndState: DndEntryState;
     isSelectVisible: boolean;
+    isDir: boolean;
 }
 
 export const ListEntry: React.FC<FileEntryProps> = React.memo(
@@ -26,6 +27,8 @@ export const ListEntry: React.FC<FileEntryProps> = React.memo(
     const entryState: FileEntryState = useFileEntryState(file, selected, focused);
     const dndIconName = useDndIcon(dndState);
     const isSelectVisible = !!selectedFiles;
+    const isDir = FileHelper.isDirectory(file);
+    const isSelected = FileHelper.isSelected(file, selectedFiles);
 
     const { fileModDateString, fileSizeString } = useLocalizedFileEntryStrings(
       file
@@ -34,7 +37,8 @@ export const ListEntry: React.FC<FileEntryProps> = React.memo(
       () => ({
         entryState,
         dndState,
-        isSelectVisible
+        isSelectVisible,
+        isDir
       }),
       [dndState, entryState]
     );
@@ -42,8 +46,6 @@ export const ListEntry: React.FC<FileEntryProps> = React.memo(
     const commonClasses = useCommonEntryStyles(entryState);
     const ChonkyIcon = useContext(ChonkyIconContext);
     const fileEntryHtmlProps = useFileEntryHtmlProps(file);
-    const isDir = FileHelper.isDirectory(file);
-    const isSelected = FileHelper.isSelected(file, selectedFiles);
 
     return (
       <div
@@ -61,12 +63,13 @@ export const ListEntry: React.FC<FileEntryProps> = React.memo(
         />
         {selectedFiles && selectFiles && (
           <div className={classes.listFileEntryCheckbox}>
-            <Checkbox
-              color='primary'
-              disabled={isDir}
-              checked={isSelected}
-              onChange={(e) => selectFiles(e.target.checked, file?.id)}
-            />
+            {!isDir && (
+              <Checkbox
+                color='primary'
+                checked={isSelected}
+                onChange={(e) => selectFiles(e.target.checked, file?.id)}
+              />
+            )}
           </div>
         )}
         <div className={classes.listFileEntryIcon}>
@@ -163,6 +166,7 @@ const useStyles = makeLocalChonkyStyles(theme => ({
     boxSizing: 'border-box',
     padding: [14, 8, 14, 0],
     zIndex: 20,
+    marginLeft: ({ isDir }: StyleState) => isDir ? 25 : 0,
 
     '& span': {
       padding: 0

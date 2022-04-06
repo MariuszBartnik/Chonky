@@ -165,6 +165,6 @@ export interface FileBrowserProps {
      * Define listener for on scroll events on file lists
      */
     onScroll?: (e: UIEvent<HTMLDivElement>) => void;
-    selectFiles: (value: boolean, id?: string) => void;
-    selectedFiles: string[];
+    selectFiles?: (value: boolean, id?: string) => void;
+    selectedFiles?: string[];
 }
