@@ -27,6 +27,7 @@ export interface FileData {
     thumbnailUrl?: string; // Automatically load thumbnail from this URL
     folderChainIcon?: Nullable<ChonkyIconName | string | any>; // Folder chain icon
 
+  // eslint-disable-next-line @typescript-eslint/member-ordering
     [property: string]: any; // Any other user-defined property
 }
 

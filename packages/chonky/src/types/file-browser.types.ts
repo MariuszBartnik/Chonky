@@ -1,7 +1,7 @@
 import { ElementType, UIEvent } from 'react';
 import { Nullable } from 'tsdef';
 
-import { ChonkyActions } from '../action-definitions/index';
+import { ChonkyActions } from '../action-definitions';
 import { GenericFileActionHandler } from './action-handler.types';
 import { FileAction } from './action.types';
 import { FileArray } from './file.types';
@@ -165,4 +165,6 @@ export interface FileBrowserProps {
      * Define listener for on scroll events on file lists
      */
     onScroll?: (e: UIEvent<HTMLDivElement>) => void;
+    selectFiles: (value: boolean, id?: string) => void;
+    selectedFiles: string[];
 }

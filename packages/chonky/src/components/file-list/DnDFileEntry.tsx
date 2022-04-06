@@ -13,24 +13,28 @@ export interface DnDFileEntryProps {
 }
 
 export const DnDFileEntry = React.memo(({ file, children }: DnDFileEntryProps) => {
-    const { drop, drag, dndState } = useFileEntryDnD(file);
+  const { drop, drag, dndState } = useFileEntryDnD(file);
 
-    useDndHoverOpen(file, dndState);
-    const classes = useStyles();
-    return (
-        <div ref={drop} className={classes.fillParent}>
-            <div
-                ref={FileHelper.isDraggable(file) ? drag : null}
-                className={classes.fillParent}
-            >
-                {children(dndState)}
-            </div>
-        </div>
-    );
+  useDndHoverOpen(file, dndState);
+  const classes = useStyles();
+
+  return (
+    <div
+      ref={drop}
+      className={classes.fillParent}
+    >
+      <div
+        ref={FileHelper.isDraggable(file) ? drag : null}
+        className={classes.fillParent}
+      >
+        {children(dndState)}
+      </div>
+    </div>
+  );
 });
 
 export const useStyles = makeLocalChonkyStyles(() => ({
-    fillParent: {
-        height: '100%',
-    },
+  fillParent: {
+    height: '100%',
+  },
 }));

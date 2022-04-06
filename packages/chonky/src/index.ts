@@ -12,25 +12,26 @@ export { ChonkyActions, DefaultFileActions, OptionIds } from './action-definitio
 export { defineFileAction } from './util/helpers';
 
 export { FileHelper } from './util/file-helper';
-export { FileData, FileArray } from './types/file.types';
-export { FileAction, FileActionEffect, FileSelectionTransform, FileActionButton, CustomVisibilityState } from './types/action.types';
-export {
-    GenericFileActionHandler,
-    MapFileActionsToData,
-    FileActionData,
-    FileActionState,
+export type { FileData, FileArray } from './types/file.types';
+// eslint-disable-next-line max-len
+export type { FileAction, FileActionEffect, FileSelectionTransform, FileActionButton, CustomVisibilityState } from './types/action.types';
+export type {
+  GenericFileActionHandler,
+  MapFileActionsToData,
+  FileActionData,
+  FileActionState,
 } from './types/action-handler.types';
-export { ChonkyActionUnion } from './types/file-browser.types';
+export type { ChonkyActionUnion } from './types/file-browser.types';
 export { ChonkyIconName } from './types/icons.types';
-export type ChonkyIconProps = import('./types/icons.types').ChonkyIconProps;
-export { FileBrowserHandle, FileBrowserProps } from './types/file-browser.types';
+export type { ChonkyIconProps } from './types/icons.types';
+export type { FileBrowserHandle, FileBrowserProps } from './types/file-browser.types';
 export { FileViewMode } from './types/file-view.types';
 export type FileViewConfig = import('./types/file-view.types').FileViewConfig;
 export type FileViewConfigGrid = import('./types/file-view.types').FileViewConfigGrid;
 export type FileViewConfigList = import('./types/file-view.types').FileViewConfigList;
-export { ThumbnailGenerator } from './types/thumbnails.types';
+export type { ThumbnailGenerator } from './types/thumbnails.types';
 
-export { I18nConfig, ChonkyFormatters } from './types/i18n.types';
+export type { I18nConfig, ChonkyFormatters } from './types/i18n.types';
 export { defaultFormatters, getI18nId, getActionI18nId, I18nNamespace } from './util/i18n';
 
 export { setChonkyDefaults } from './util/default-config';
