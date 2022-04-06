@@ -5,7 +5,7 @@ import { useDispatch, useSelector, useStore } from 'react-redux';
 import { ExcludeKeys, Nullable } from 'tsdef';
 
 import { EssentialActions } from '../action-definitions/essential';
-import { ChonkyActions } from '../action-definitions';
+import { ChonkyActions } from '../action-definitions/index';
 import {
   selectCurrentFolder,
   selectFolderChain,

@@ -126,4 +126,4 @@ export enum CustomVisibilityState {
     Disabled,
     Default,
     Active
-}
+};

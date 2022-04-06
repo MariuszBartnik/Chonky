@@ -4,7 +4,7 @@ import { Nilable, Nullable } from 'tsdef';
 
 import { createSelector } from '@reduxjs/toolkit';
 
-import { OptionIds } from '../action-definitions';
+import { OptionIds } from '../action-definitions/option-ids';
 import { FileArray, FileData, FileFilter } from '../types/file.types';
 import { RootState } from '../types/redux.types';
 import { FileSortKeySelector, SortOrder } from '../types/sort.types';
@@ -24,13 +24,15 @@ export const selectContextMenuItems = (state: RootState) => state.contextMenuIte
 export const selectFolderChain = (state: RootState) => state.folderChain;
 export const selectCurrentFolder = (state: RootState) => {
   const folderChain = selectFolderChain(state);
+  const currentFolder = folderChain.length > 0 ? folderChain[folderChain.length - 1] : null;
 
-  return folderChain.length > 0 ? folderChain[folderChain.length - 1] : null;
+  return currentFolder;
 };
 export const selectParentFolder = (state: RootState) => {
   const folderChain = selectFolderChain(state);
+  const parentFolder = folderChain.length > 1 ? folderChain[folderChain.length - 2] : null;
 
-  return folderChain.length > 1 ? folderChain[folderChain.length - 2] : null;
+  return parentFolder;
 };
 
 export const selectRawFiles = (state: RootState) => state.rawFiles;
@@ -49,7 +51,7 @@ export const selectSelectionMap = (state: RootState) => state.selectionMap;
 export const selectSelectedFileIds = (state: RootState) => Object.keys(selectSelectionMap(state));
 export const selectSelectionSize = (state: RootState) => selectSelectedFileIds(state).length;
 export const selectIsFileSelected = (fileId: Nullable<string>) => (state: RootState) =>
-  !!fileId && selectSelectionMap(state)[fileId];
+  !!fileId && !!selectSelectionMap(state)[fileId];
 export const selectSelectedFiles = (state: RootState) => {
   const fileMap = selectFileMap(state);
 
@@ -161,9 +163,11 @@ const getSortedFileIds = createSelector(
     if (sortFunctions.length === 0) return fileIds;
 
     // We copy the array because `fast-sort` mutates it
-    return sort([...files])
+    const sortedFileIds = sort([...files])
       .by(sortFunctions as any)
       .map(file => (file ? file.id : null));
+
+    return sortedFileIds;
   }
 );
 const getSearcher = createSelector(
@@ -248,16 +252,18 @@ export const getFileData = (state: RootState, fileId: Nullable<string>) =>
 export const getIsFileSelected = (state: RootState, file: FileData) => {
   // !!! We deliberately don't use `FileHelper.isSelectable` here as we want to
   //     reflect the state of Redux store accurately.
-  return selectSelectionMap(state)[file.id];
+  return !!selectSelectionMap(state)[file.id];
 };
 export const getSelectedFiles = (state: RootState, ...filters: Nilable<FileFilter>[]) => {
   const { fileMap, selectionMap } = state;
-  const selectedFiles = Object.keys(selectionMap).map(id => fileMap[id]);
 
-  return filters.reduce(
+  const selectedFiles = Object.keys(selectionMap).map(id => fileMap[id]);
+  const filteredSelectedFiles = filters.reduce(
     (prevFiles, filter) => (filter ? prevFiles.filter(filter) : prevFiles),
     selectedFiles
   );
+
+  return filteredSelectedFiles;
 };
 export const getSelectedFilesForAction = (state: RootState, fileActionId: string) =>
   selectSelectedFilesForAction(fileActionId)(state);

@@ -55,8 +55,9 @@ export const useFiles = <FT extends CustomFileData>(
   return useMemo(() => {
     const currentFolder = fileMap[currentFolderId];
     const childrenIds = currentFolder.childrenIds!;
+    const files = childrenIds.map((fileId: string) => fileMap[fileId]);
 
-    return childrenIds.map((fileId: string) => fileMap[fileId]);
+    return files;
   }, [currentFolderId, fileMap]);
 };
 

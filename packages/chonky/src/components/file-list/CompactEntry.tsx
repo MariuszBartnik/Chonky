@@ -10,7 +10,8 @@ import { FileEntryName } from './FileEntryName';
 import { FileEntryState } from './GridEntryPreview';
 
 export const CompactEntry: React.FC<FileEntryProps> = React.memo(
-  ({ file, selected, focused }) => {
+  // @ts-ignore
+  ({ file, selected, focused, dndState }) => {
     const entryState: FileEntryState = useFileEntryState(file, selected, focused);
 
     const { fileModDateString, fileSizeString } = useLocalizedFileEntryStrings(

@@ -108,7 +108,7 @@ const reducers = {
   },
   toggleSelection(state: RootState, action: PayloadAction<{ fileId: string; exclusive: boolean }>) {
     if (state.disableSelection) return;
-    const oldValue = state.selectionMap[action.payload.fileId];
+    const oldValue = !!state.selectionMap[action.payload.fileId];
 
     if (action.payload.exclusive) state.selectionMap = {};
     if (oldValue) delete state.selectionMap[action.payload.fileId];

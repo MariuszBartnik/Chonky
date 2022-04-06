@@ -17,8 +17,9 @@ export const useFileBrowserHandle = (ref: React.Ref<FileBrowserHandle>) => {
     () => ({
       getFileSelection(): Set<string> {
         const selectionMap = selectSelectionMap(store.getState());
+        const selectionSet = new Set(Object.keys(selectionMap));
 
-        return new Set(Object.keys(selectionMap));
+        return selectionSet;
       },
       setFileSelection(selection, reset = true): void {
         const fileIds = Array.from(selection);

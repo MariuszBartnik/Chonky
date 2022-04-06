@@ -1,4 +1,4 @@
-import { ChonkyActions } from '../action-definitions';
+import { ChonkyActions } from '../action-definitions/index';
 import { ChonkyIconPlaceholder } from '../components/internal/ChonkyIconPlaceholder';
 import { FileBrowserProps } from '../types/file-browser.types';
 

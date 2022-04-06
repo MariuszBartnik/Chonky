@@ -1,6 +1,6 @@
 import { Nilable } from 'tsdef';
 
-import { ChonkyActions, DefaultFileActions, EssentialFileActions } from '../../action-definitions';
+import { ChonkyActions, DefaultFileActions, EssentialFileActions } from '../../action-definitions/index';
 import { FileActionGroup, FileActionMenuItem } from '../../types/action-menus.types';
 import { FileAction } from '../../types/action.types';
 import { ChonkyThunk } from '../../types/redux.types';

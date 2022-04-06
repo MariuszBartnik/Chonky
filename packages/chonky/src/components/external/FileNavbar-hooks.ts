@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Nullable } from 'tsdef';
 
-import { ChonkyActions } from '../../action-definitions';
+import { ChonkyActions } from '../../action-definitions/index';
 import { selectFolderChain } from '../../redux/selectors';
 import { thunkRequestFileAction } from '../../redux/thunks/dispatchers.thunks';
 import { FileData } from '../../types/file.types';
@@ -18,7 +18,7 @@ export const useFolderChainItems = (): FolderChainItem[] => {
   const folderChain = useSelector(selectFolderChain);
   const dispatch = useDispatch();
 
-  return useMemo(() => {
+  const folderChainItems = useMemo(() => {
     const items: FolderChainItem[] = [];
 
     if (!folderChain) return items;
@@ -44,4 +44,6 @@ export const useFolderChainItems = (): FolderChainItem[] => {
 
     return items;
   }, [dispatch, folderChain]);
+
+  return folderChainItems;
 };
