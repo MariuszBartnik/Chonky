@@ -15,13 +15,6 @@ export const lightTheme = {
     textActive: '#09f',
   },
 
-  palette: {
-    primary: {
-      contrastText: '#ffffff',
-      main: '#7532b8'
-    },
-  },
-
   fontSizes: {
     rootPrimary: 15,
   },

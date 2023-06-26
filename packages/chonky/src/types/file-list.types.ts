@@ -15,4 +15,5 @@ export interface FileEntryProps {
   dndState: DndEntryState;
   selectFiles?: (value: boolean, id?: string) => void;
   selectedFiles?: string[];
+  checkboxColor?: string;
 }

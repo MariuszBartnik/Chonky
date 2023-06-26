@@ -8,10 +8,8 @@ import React, { CSSProperties, useCallback, useEffect, useMemo, useRef, useState
 import { useSelector } from 'react-redux';
 import { VariableSizeGrid } from 'react-window';
 
-import { ChonkyActions } from '../../action-definitions';
 import { selectFileViewConfig, selectors } from '../../redux/selectors';
 import { FileViewConfigGrid } from '../../types/file-view.types';
-import { RootState } from '../../types/redux.types';
 import { useInstanceVariable } from '../../util/hooks-helpers';
 import { makeGlobalChonkyStyles, useIsMobileBreakpoint } from '../../util/styles';
 import { SmartFileEntry } from './FileEntry';
@@ -156,7 +154,7 @@ export const GridContainer: React.FC<FileListGridProps> = React.memo(props => {
   );
 
   const classes = useStyles();
-  const gridComponent = useMemo(() => {
+  return useMemo(() => {
     return (
       <VariableSizeGrid
         ref={gridRef as any}
@@ -188,8 +186,6 @@ export const GridContainer: React.FC<FileListGridProps> = React.memo(props => {
     getItemKey,
     cellRenderer,
   ]);
-
-  return gridComponent;
 });
 
 const useStyles = makeGlobalChonkyStyles(() => ({

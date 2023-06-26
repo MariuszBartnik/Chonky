@@ -34,7 +34,7 @@ export const ListContainer: React.FC<FileListListProps> = React.memo(props => {
     [displayFileIdsRef]
   );
 
-  const listComponent = useMemo(() => {
+  return useMemo(() => {
     // When entry size is null, we use List view
     const rowRenderer = (data: { index: number; style: CSSProperties }) => {
       return (
@@ -69,8 +69,6 @@ export const ListContainer: React.FC<FileListListProps> = React.memo(props => {
     width,
     getItemKey,
     props.selectedFiles,
-    props.selectFiles
+    props.selectFiles,
   ]);
-
-  return listComponent;
 });

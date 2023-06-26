@@ -167,4 +167,5 @@ export interface FileBrowserProps {
     onScroll?: (e: UIEvent<HTMLDivElement>) => void;
     selectFiles?: (value: boolean, id?: string) => void;
     selectedFiles?: string[];
+    checkboxColor?: string;
 }

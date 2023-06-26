@@ -47,7 +47,7 @@ export const useFileEntryState = (file: Nullable<FileData>, selected: boolean, f
       thumbnailUrl,
       color: file && file.color !== undefined ? file.color : fileColor,
       selected,
-      focused: !!focused,
+      focused,
     };
   }, [file, focused, iconData, selected, thumbnailLoading, thumbnailUrl]);
 };
@@ -77,7 +77,7 @@ export const useModifierIconComponents = (file: Nullable<FileData>) => {
     return modifierIcons;
   }, [file]);
   const ChonkyIcon = useContext(ChonkyIconContext);
-  const modifierIconComponents = useMemo(
+  return useMemo(
     () => modifierIcons.map((icon, index) => (
       <ChonkyIcon
         key={`file-modifier-${index}`}
@@ -89,8 +89,6 @@ export const useModifierIconComponents = (file: Nullable<FileData>) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [ChonkyIcon, modifierIcons]
   );
-
-  return modifierIconComponents;
 };
 
 const _extname = (fileName: string) => {

@@ -59,7 +59,7 @@ export const FileBrowser = React.forwardRef<
   const isMobileBreakpoint = useIsMobileBreakpoint();
   const theme = useMemo(() => {
     const muiTheme = createMuiTheme({
-      palette: { type: darkMode ? 'dark' : 'light' },
+      palette: { type: darkMode ? 'dark' : 'light', primary: { main: props.checkboxColor ?? '#7532b8' } },
     });
     const combinedTheme = merge(
       muiTheme,
@@ -69,7 +69,7 @@ export const FileBrowser = React.forwardRef<
     return isMobileBreakpoint
       ? merge(combinedTheme, mobileThemeOverride)
       : combinedTheme;
-  }, [darkMode, isMobileBreakpoint]);
+  }, [darkMode, isMobileBreakpoint, props.checkboxColor]);
 
   const chonkyComps = (
     <>

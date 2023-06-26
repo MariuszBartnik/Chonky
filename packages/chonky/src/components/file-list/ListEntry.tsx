@@ -38,7 +38,7 @@ export const ListEntry: React.FC<FileEntryProps> = React.memo(
         entryState,
         dndState,
         isSelectVisible,
-        isDir
+        isDir,
       }),
       [dndState, entryState]
     );
@@ -65,7 +65,7 @@ export const ListEntry: React.FC<FileEntryProps> = React.memo(
           <div className={classes.listFileEntryCheckbox}>
             {!isDir && (
               <Checkbox
-                color='primary'
+                color="primary"
                 checked={isSelected}
                 onChange={(e) => selectFiles(e.target.checked, file?.id)}
               />

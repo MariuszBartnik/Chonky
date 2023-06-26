@@ -21,6 +21,7 @@ export interface SmartFileEntryProps {
     fileViewMode: FileViewMode;
     selectFiles?: (value: boolean, id?: string) => void;
     selectedFiles?: string[];
+    checkboxColor?: string;
 }
 
 const disabledDndState: DndEntryState = {
